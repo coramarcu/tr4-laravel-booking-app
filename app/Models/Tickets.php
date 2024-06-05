@@ -13,4 +13,14 @@ class Tickets extends Model
         'event_id',
         'user_id',
     ] ;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function event()
+    {
+        return $this->belongsTo(Events::class);
+    }
 }

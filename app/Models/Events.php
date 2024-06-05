@@ -18,4 +18,13 @@ class Events extends Model
         'tickets_allocated',
         'tickets_per_user',
     ];
+
+    public function tickets() {
+        return $this->hasMany(Tickets::class);
+    }
+
+    public function users()
+    {
+        return $this->hasManyThrough(User::class, Tickets::class, 'event_id', 'id', 'id', 'user_id');
+    }
 }

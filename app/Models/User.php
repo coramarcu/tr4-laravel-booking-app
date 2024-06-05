@@ -47,4 +47,13 @@ class User extends Authenticatable
             // 'password' => 'hashed',
         ];
     }
+
+    public function tickets() {
+        return $this->hasMany(Tickets::class);
+    }
+
+    public function events()
+    {
+        return $this->hasManyThrough(Events::class, Tickets::class, 'user_id', 'id', 'id', 'event_id');
+    }
 }
