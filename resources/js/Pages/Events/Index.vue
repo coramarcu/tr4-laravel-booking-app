@@ -18,10 +18,13 @@
                 for this event.
             </p>
         </div>
+        <a :href="'event/' + event.id + '/buy'" class="btn"> Buy tickets </a>
     </article>
 </template>
 
 <script>
+import { Link } from "@inertiajs/vue3"; // doesn't work, using <a> for now
+
 export default {
     props: {
         events: Array,

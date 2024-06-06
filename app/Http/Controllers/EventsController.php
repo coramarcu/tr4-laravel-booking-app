@@ -38,9 +38,12 @@ class EventsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Events $events)
+    public function show($id)
     {
-        //
+        $event = Events::findOrFail($id);
+        return Inertia::render('SingleEvent/Index', [
+            'event' => $event,
+        ]);
     }
 
     /**

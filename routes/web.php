@@ -16,3 +16,5 @@ Route::get('/second-link', function () {
 })->name('second');
 
 Route::get('/events', [EventsController::class,'index'])->name('events.index');
+
+Route::get('/event/{id}/buy', [EventsController::class, 'show'])->name('events.show');
