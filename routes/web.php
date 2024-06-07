@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\UsersController;
+
 
 Route::get('/', function () {
     return Inertia::render('Events/Index', [
@@ -18,3 +20,5 @@ Route::get('/second-link', function () {
 Route::get('/events', [EventsController::class,'index'])->name('events.index');
 
 Route::get('/event/{id}/buy', [EventsController::class, 'show'])->name('events.show');
+
+Route::get('/create-user', [UsersController::class, 'create'])->name('user.create');
