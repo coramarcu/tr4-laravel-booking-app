@@ -23,7 +23,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Users/CreateUser');
+        
     }
 
     /**
@@ -31,7 +31,22 @@ class UsersController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        $request->validate([
+            'first_name' => ['required','string'],
+            'last_name'=> ['required','string'],
+            'email'=> ['required','string'],
+            'requested_tickets'=> ['required','string'],
+        ]);
+
+        User::create([
+            'first_name' => ['required','string'],
+            'last_name'=> ['required','string'],
+            'email'=> ['required','string'],
+            'requested_tickets'=> ['required','string'],
+            'event_id'=> 1,
+        ]);
+
+        return Inertia::render('Users/CreateUser');
     }
 
     /**

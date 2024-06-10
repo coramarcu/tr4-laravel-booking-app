@@ -1,9 +1,9 @@
 <template>
     <h1>Buy tickets for {{ event.event_name }}</h1>
 
-    <form>
+    <form @submit.prevent="form.post('/create-user')">
         <label for="first-name">First Name:</label>
-        <input id="first-name" v-model="name" type="text" />
+        <input id="first-name" v-model="form.first_name" type="text" />
 
         <label for="last-name">Last Name:</label>
         <input id="last-name" v-model="form.last_name" type="text" />
@@ -25,8 +25,6 @@
 <script>
 import { useForm } from "@inertiajs/vue3";
 
-const name = "Cora";
-
 const form = useForm({
     first_name: "",
     last_name: "",
@@ -34,9 +32,9 @@ const form = useForm({
     requested_tickets: "",
 });
 
-const submit = () => {
-    form.post("/create-user");
-};
+// const submit = () => {
+//     form.post("/create-user");
+// };
 
 export default {
     props: {
