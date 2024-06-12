@@ -6,11 +6,17 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use App\Models\Events;
+use App\Services\UserService;
 use Inertia\Inertia;
 
 
 class UsersController extends Controller
 {
+    private $userService;
+
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -32,21 +38,27 @@ class UsersController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        var_dump("I'm here");
         
-        $data = $request->validate([
+        $request->validate([
             'first_name' => ['required','string'],
             'last_name'=> ['required','string'],
             'email'=> ['required','string'],
             'requested_tickets'=> ['required','string'],
         ]);
 
-        User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
-            'requested_tickets' => $data['requested_tickets'],
-        ]);
+        $this->userService->register(
+            $request->input('first_name'),
+            $request->input('last_name'),
+            $request->input('email'),
+            $request->input('requested_tickets'),
+        );
+
+        // User::create([
+        //     'first_name' => $data['first_name'],
+        //     'last_name' => $data['last_name'],
+        //     'email' => $data['email'],
+        //     'requested_tickets' => $data['requested_tickets'],
+        // ]);
 
 
         return Inertia::render('Events/Index', [
