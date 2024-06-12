@@ -1,4 +1,4 @@
-<template>Hello Create User</template>
+<template>User Created Successfully</template>
 
 <script>
 export default {

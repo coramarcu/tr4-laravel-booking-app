@@ -22,3 +22,4 @@ Route::get('/events', [EventsController::class,'index'])->name('events.index');
 Route::get('/event/{id}/buy', [EventsController::class, 'show'])->name('events.show');
 
 Route::post('/create-user', [UsersController::class, 'store'])->name('user.create');
+

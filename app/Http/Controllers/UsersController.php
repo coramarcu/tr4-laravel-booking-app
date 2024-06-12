@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use App\Models\Events;
 use Inertia\Inertia;
 
 
@@ -31,7 +32,9 @@ class UsersController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $request->validate([
+        var_dump("I'm here");
+        
+        $data = $request->validate([
             'first_name' => ['required','string'],
             'last_name'=> ['required','string'],
             'email'=> ['required','string'],
@@ -39,14 +42,16 @@ class UsersController extends Controller
         ]);
 
         User::create([
-            'first_name' => ['required','string'],
-            'last_name'=> ['required','string'],
-            'email'=> ['required','string'],
-            'requested_tickets'=> ['required','string'],
-            'event_id'=> 1,
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'requested_tickets' => $data['requested_tickets'],
         ]);
 
-        return Inertia::render('Users/CreateUser');
+
+        return Inertia::render('Events/Index', [
+            'events'=> Events::all(),
+        ]);
     }
 
     /**

@@ -41,6 +41,7 @@ class EventsController extends Controller
     public function show($id)
     {
         $event = Events::findOrFail($id);
+        
         return Inertia::render('SingleEvent/Index', [
             'event' => $event,
         ]);

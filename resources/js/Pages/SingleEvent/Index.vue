@@ -1,9 +1,14 @@
 <template>
     <h1>Buy tickets for {{ event.event_name }}</h1>
 
-    <form @submit.prevent="form.post('/create-user')">
+    <form @submit.prevent="form.post(route('user.create'))" method="post">
         <label for="first-name">First Name:</label>
-        <input id="first-name" v-model="form.first_name" type="text" />
+        <input
+            id="first-name"
+            v-model="form.first_name"
+            type="text"
+            name="first"
+        />
 
         <label for="last-name">Last Name:</label>
         <input id="last-name" v-model="form.last_name" type="text" />
