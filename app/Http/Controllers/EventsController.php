@@ -6,6 +6,7 @@ use App\Http\Requests\StoreEventsRequest;
 use App\Http\Requests\UpdateEventsRequest;
 use App\Models\Events;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Log;
 
 class EventsController extends Controller
 {
@@ -30,9 +31,14 @@ class EventsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEventsRequest $request)
+    public function store(StoreEventsRequest $request, $id)
     {
-        //
+        Log::debug("We are here");
+        Log::debug($id);
+        Log::debug($request);
+
+        return Inertia::render('SingleEvent/Confirm');
+
     }
 
     /**

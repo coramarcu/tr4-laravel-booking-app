@@ -19,7 +19,7 @@ Route::get('/second-link', function () {
 
 Route::get('/events', [EventsController::class,'index'])->name('events.index');
 
-Route::get('/event/{id}/buy', [EventsController::class, 'show'])->name('events.show');
+Route::get('/event/{id}/tickets', [EventsController::class, 'show'])->name('events.show');
 
-Route::post('/create-user', [UsersController::class, 'store'])->name('user.create');
+Route::post('/event/{id}/tickets', [EventsController::class, 'store'])->name('events.store');
 

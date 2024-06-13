@@ -1,7 +1,10 @@
 <template>
     <h1>Buy tickets for {{ event.event_name }}</h1>
 
-    <form @submit.prevent="form.post(route('user.create'))" method="post">
+    <form
+        @submit.prevent="form.post(`/event/${event.id}/tickets`)"
+        method="post"
+    >
         <label for="first-name">First Name:</label>
         <input
             id="first-name"

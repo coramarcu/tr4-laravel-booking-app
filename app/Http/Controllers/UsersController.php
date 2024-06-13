@@ -60,9 +60,16 @@ class UsersController extends Controller
         //     'requested_tickets' => $data['requested_tickets'],
         // ]);
 
+        $event = Events::find(1);
+        $tickets = $event->tickets;
+
+        var_dump($event);
+
 
         return Inertia::render('Events/Index', [
             'events'=> Events::all(),
+            'tickets' => $tickets,
+            'event one' => $event,
         ]);
     }
 

@@ -1,6 +1,9 @@
 <template>
     Hey Events!
-    <a :href="route('second')">Go to second page.</a>
+    <!-- {{ console.log("Tickets", tickets) }}
+    <p>{{ tickets }}</p>
+    Hey Event One:
+    <p>{{ event }}</p> -->
 
     <article v-for="event in events" :key="event.id">
         <h1>{{ event.event_name }}</h1>
@@ -18,7 +21,9 @@
                 for this event.
             </p>
         </div>
-        <a :href="'event/' + event.id + '/buy'" class="btn"> Buy tickets </a>
+        <a :href="'event/' + event.id + '/tickets'" class="btn">
+            Buy tickets
+        </a>
     </article>
 </template>
 
@@ -27,7 +32,16 @@ import { Link } from "@inertiajs/vue3"; // doesn't work, using <a> for now
 
 export default {
     props: {
-        events: Array,
+        events: {
+            required: true,
+        },
+
+        // tickets: {
+        //     required: true,
+        // },
+        // event: {
+        //     required: true,
+        // },
     },
     data() {
         return {};
