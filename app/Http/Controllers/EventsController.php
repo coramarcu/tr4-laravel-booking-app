@@ -37,6 +37,7 @@ class EventsController extends Controller
         Log::debug($id);
         Log::debug($request);
 
+
         return Inertia::render('SingleEvent/Confirm');
 
     }

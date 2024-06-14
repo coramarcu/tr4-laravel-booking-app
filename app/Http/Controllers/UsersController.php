@@ -36,9 +36,9 @@ class UsersController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request, $id)
     {
-        $this->userService->register($request);
+        $this->userService->register($request, $id);
 
         return Inertia::render('Events/Index', [
             'events'=> Events::all(),
