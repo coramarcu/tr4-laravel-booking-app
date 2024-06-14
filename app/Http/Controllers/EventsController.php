@@ -42,7 +42,9 @@ class EventsController extends Controller
     public function store(StoreUserRequest $request, $id)
     {
         $this->userService->register($request, $id);
-        return Inertia::render('SingleEvent/Confirm');
+        return Inertia::render('SingleEvent/Confirm', [
+            'event' => Events::findOrFail($id),
+        ]);
     }
 
     /**
