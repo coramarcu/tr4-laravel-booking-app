@@ -1,9 +1,5 @@
 <template>
     Hey Events!
-    <!-- {{ console.log("Tickets", tickets) }}
-    <p>{{ tickets }}</p>
-    Hey Event One:
-    <p>{{ event }}</p> -->
 
     <article v-for="event in events" :key="event.id">
         <h1>{{ event.event_name }}</h1>
@@ -35,13 +31,6 @@ export default {
         events: {
             required: true,
         },
-
-        // tickets: {
-        //     required: true,
-        // },
-        // event: {
-        //     required: true,
-        // },
     },
     data() {
         return {};

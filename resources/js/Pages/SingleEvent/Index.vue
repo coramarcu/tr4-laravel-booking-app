@@ -40,10 +40,6 @@ const form = useForm({
     requested_tickets: "",
 });
 
-// const submit = () => {
-//     form.post("/create-user");
-// };
-
 export default {
     props: {
         event: Object,

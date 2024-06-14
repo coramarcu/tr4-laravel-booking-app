@@ -5,8 +5,6 @@ namespace App\Services;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Support\Facades\Log;
-use App\Services\TiketService;
-
 
 class UserService {
     public function __construct() {}
@@ -30,8 +28,6 @@ class UserService {
 
         
         $newlyCreatedUser = User::latest()->first();
-        // Log::info('first returns'. json_encode($newlyCreatedUser));
-        // Log::info('Tickets bought for event id: ' . json_encode($eventId));
         $ticketService = new TicketService();
         $ticketService->add($newlyCreatedUser, $eventId, $data['requested_tickets']);
     }

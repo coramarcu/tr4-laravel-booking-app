@@ -33,13 +33,7 @@ class EventsController extends Controller
      */
     public function store(StoreEventsRequest $request, $id)
     {
-        Log::debug("We are here");
-        Log::debug($id);
-        Log::debug($request);
-
-
         return Inertia::render('SingleEvent/Confirm');
-
     }
 
     /**
@@ -77,4 +71,12 @@ class EventsController extends Controller
     {
         //
     }
+
+    // public function success($id) {
+    //     $event = Events::findOrFail($id);
+
+    //     return Inertia::render('Tickets/Success', [
+    //         'event' => $event,
+    //     ]);
+    // }
 }
