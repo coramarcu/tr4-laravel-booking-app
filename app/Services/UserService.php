@@ -14,7 +14,7 @@ class UserService {
             'first_name' => ['required','string'],
             'last_name'=> ['required','string'],
             'email'=> ['required','string'],
-            'requested_tickets'=> ['required','string'],
+            'requested_tickets'=> ['required','integer'],
         ]);
 
         Log::debug("Data", $data);
@@ -25,6 +25,8 @@ class UserService {
             'email' => $data['email'],
             'requested_tickets' => $data['requested_tickets'],
         ]);
+
+        Log::info('Logging requested tickets: ' . json_encode($data['requested_tickets']));
 
         
         $newlyCreatedUser = User::latest()->first();

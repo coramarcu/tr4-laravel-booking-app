@@ -15,7 +15,7 @@ class TicketService {
         $maxTicketsPerCustomer = $event->tickets_per_user;
 
         if($numberOfTickets <= $maxTicketsPerCustomer) {
-            for($i = 0; $i < $maxTicketsPerCustomer; $i++) {
+            for($i = 0; $i < $numberOfTickets; $i++) {
                 Tickets::create([
                     'event_id' => $eventId,
                     'user_id' => $user->id,

@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEventsRequest;
 use App\Http\Requests\UpdateEventsRequest;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Events;
 use Inertia\Inertia;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Log;
 
 class EventsController extends Controller
 {
+    private $userService;
+
+    public function __construct(UserService $userService) {
+        $this->userService = $userService;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -31,8 +39,9 @@ class EventsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEventsRequest $request, $id)
+    public function store(StoreUserRequest $request, $id)
     {
+        $this->userService->register($request, $id);
         return Inertia::render('SingleEvent/Confirm');
     }
 

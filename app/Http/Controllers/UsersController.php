@@ -38,12 +38,7 @@ class UsersController extends Controller
      */
     public function store(StoreUserRequest $request, $id)
     {
-        $this->userService->register($request, $id);
-
-        return Inertia::render('Events/Index', [
-            'events'=> Events::all(),
-       
-        ]);
+        
     }
 
     /**
