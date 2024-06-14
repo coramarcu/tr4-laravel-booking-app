@@ -38,38 +38,11 @@ class UsersController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        
-        $request->validate([
-            'first_name' => ['required','string'],
-            'last_name'=> ['required','string'],
-            'email'=> ['required','string'],
-            'requested_tickets'=> ['required','string'],
-        ]);
-
-        $this->userService->register(
-            $request->input('first_name'),
-            $request->input('last_name'),
-            $request->input('email'),
-            $request->input('requested_tickets'),
-        );
-
-        // User::create([
-        //     'first_name' => $data['first_name'],
-        //     'last_name' => $data['last_name'],
-        //     'email' => $data['email'],
-        //     'requested_tickets' => $data['requested_tickets'],
-        // ]);
-
-        $event = Events::find(1);
-        $tickets = $event->tickets;
-
-        var_dump($event);
-
+        $this->userService->register($request);
 
         return Inertia::render('Events/Index', [
             'events'=> Events::all(),
-            'tickets' => $tickets,
-            'event one' => $event,
+       
         ]);
     }
 

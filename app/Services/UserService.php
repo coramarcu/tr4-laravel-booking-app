@@ -3,18 +3,28 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Http\Requests\StoreUserRequest;
+use Illuminate\Support\Facades\Log;
 
 
 class UserService {
     public function __construct() {}
 
-    public function register(string $first_name, string $last_name, string $email, int $requested_tickets) {
+    public function register(StoreUserRequest $request) {
+        $data = $request->validate([
+            'first_name' => ['required','string'],
+            'last_name'=> ['required','string'],
+            'email'=> ['required','string'],
+            'requested_tickets'=> ['required','string'],
+        ]);
+
+        Log::debug("Data", $data);
 
         User::create([
-            'first_name' =>$first_name,
-            'last_name' => $last_name,
-            'email' => $email,
-            'requested_tickets' => $requested_tickets,
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'requested_tickets' => $data['requested_tickets'],
         ]);
     }
 }
