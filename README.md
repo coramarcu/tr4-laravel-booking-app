@@ -14,7 +14,7 @@ The tech stack used for this project is as follows:
 -   PHPUnit
 -   Tailwind
 
-In terms of architecture, the application features the commonly used Controller-Service-Repository pattern. This model of layer decoupling supports separation of concers and allows for better unit testing. It also makes the code cleaner and easiert to debug and maintain.
+In terms of architecture, the application features the commonly used Controller-Service-Repository pattern. This model of layer decoupling supports separation of concers and allows for better unit testing. It also makes the code cleaner and easier to debug and maintain.
 
 ## Features:
 
