@@ -1,8 +1,8 @@
 # Event Booking App
 
-This is a simple full stack application that provides end users with the ability to book tickets for various events. The core functionality includes: viewing events, filtering events by country and booking tickets.
+This is a simple full stack application that provides end users with the ability to book tickets for various events. The core functionality includes viewing events and booking tickets.
 
-The booking system inlcudes some basic business logic (max number of tickets per venue and max number of tickets per user) and a confimration screen on successful purchase.
+The booking system ensures some basic business logic (checking if tickets are available, as well as how many tickets each user can buy) and a confimration screen on successful purchase.
 
 ## Architecture and Technologies
 
