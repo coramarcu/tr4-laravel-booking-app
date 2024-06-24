@@ -6,6 +6,7 @@ use App\Http\Requests\StoreEventsRequest;
 use App\Http\Requests\UpdateEventsRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\Events;
+use App\Models\User;
 use Inertia\Inertia;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Log;
@@ -39,11 +40,29 @@ class EventsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request, $id)
+    public function store(StoreUserRequest $storeUserRequest, $eventId)
     {
-        $this->userService->register($request, $id);
+
+        // $data = $storeUserRequest->validate([
+        //     'first_name' => ['required','string'],
+        //     'last_name'=> ['required','string'],
+        //     'email'=> ['required','string'],
+        //     'requested_tickets'=> ['required','integer'],
+        // ]);
+
+        // Log::debug("Data", $data);
+
+        // $newUser = User::create([
+        //     'first_name' => $data['first_name'],
+        //     'last_name' => $data['last_name'],
+        //     'email' => $data['email'],
+        //     'requested_tickets' => $data['requested_tickets'],
+        // ]);
+
+        $this->userService->register($storeUserRequest, $eventId);
+
         return Inertia::render('SingleEvent/Confirm', [
-            'event' => Events::findOrFail($id),
+            'event' => Events::findOrFail($eventId),
         ]);
     }
 

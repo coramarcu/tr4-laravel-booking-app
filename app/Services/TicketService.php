@@ -5,26 +5,34 @@ namespace App\Services;
 use App\Models\Tickets;
 use App\Models\User;
 use App\Models\Events;
+use App\Repositories\TicketsRepository;
+use App\Repositories\EventsRepository;
 
 class TicketService {
-    public function __construct() {}
+    protected $eventsRepository;
+    protected $ticketsrepository;
 
-    public function add(User $user, $eventId, $numberOfTickets) {
+    public function __construct(EventsRepository $eventsRepository, TicketsRepository $ticketsRepository) {
+        $this->eventsRepository = $eventsRepository;
+        $this->ticketsrepository = $ticketsRepository;
+    }
 
-        $event = Events::find($eventId);
+    public function add(User $user, $eventId) {
+
+        $event = $this->eventsRepository->findById($eventId);
         $maxTicketsPerCustomer = $event->tickets_per_user;
+        $numberOfTickets = $user->requested_tickets;
 
         if($numberOfTickets <= $maxTicketsPerCustomer) {
             for($i = 0; $i < $numberOfTickets; $i++) {
-                Tickets::create([
-                    'event_id' => $eventId,
-                    'user_id' => $user->id,
-                ]);
+                $this->ticketsrepository->createTicket($eventId, $user->id);
             }
+
+            return true;
 
         }
         else {
-            return null;
+            return false;
         }
     }
 }
