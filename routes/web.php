@@ -3,16 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\EventsController;
-use App\Http\Controllers\UsersController;
 
 
 Route::get('/', function () {
-    return Inertia::render('Events/Index', [
-        'name' => 'Cora',
-        
-    ]);
+    return redirect()->route('events.index');
 });
-
 
 Route::get('/events', [EventsController::class,'index'])->name('events.index');
 

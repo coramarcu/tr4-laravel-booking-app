@@ -3,18 +3,11 @@
 namespace Tests\Unit;
 
 use App\Models\Events;
-// use App\Models\Tickets;
 use App\Models\User;
 use App\Services\TicketService;
 use App\Repositories\EventsRepository;
 use App\Repositories\TicketsRepository;
 use PHPUnit\Framework\TestCase;
-
-// use Tests\TestCase;
-// use Illuminate\Support\Facades\Log;
-// use Mockery;
-// use Mockery\MockInterface;
-
 
 class TicketServiceTest extends TestCase
 {

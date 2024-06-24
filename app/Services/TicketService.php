@@ -2,9 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Tickets;
 use App\Models\User;
-use App\Models\Events;
 use App\Repositories\TicketsRepository;
 use App\Repositories\EventsRepository;
 

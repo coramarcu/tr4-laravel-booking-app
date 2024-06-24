@@ -6,22 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('tickets', function (Blueprint $table) {
-            $table->id(); // PK
-            $table->foreignId('event_id')->constrained(); // FK
-            $table->foreignId('user_id')->constrained(); // FK
+            $table->id(); 
+            $table->foreignId('event_id')->constrained(); 
+            $table->foreignId('user_id')->constrained(); 
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('tickets');

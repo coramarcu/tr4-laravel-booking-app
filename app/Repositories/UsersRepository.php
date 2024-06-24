@@ -6,11 +6,6 @@ use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 
 class UsersRepository {
-    // protected $ticket;
-
-    // public function __construct(Tickets $ticket) {
-    //     $this->ticket = $ticket;
-    // }
 
     public function createUser(StoreUserRequest $storeUserRequest) {
         $data = $storeUserRequest->validate([
