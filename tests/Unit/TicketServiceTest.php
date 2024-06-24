@@ -2,31 +2,63 @@
 
 namespace Tests\Unit;
 
-use App\Services\TicketService;
-use PHPUnit\Framework\TestCase;
+use App\Models\Events;
+// use App\Models\Tickets;
 use App\Models\User;
-use Illuminate\Support\Facades\Log;
+use App\Services\TicketService;
+use App\Repositories\EventsRepository;
+use App\Repositories\TicketsRepository;
+use PHPUnit\Framework\TestCase;
+
+// use Tests\TestCase;
+// use Illuminate\Support\Facades\Log;
+// use Mockery;
+// use Mockery\MockInterface;
 
 
 class TicketServiceTest extends TestCase
 {
-    /**
-     * A basic test example.
-     */
-    public function test_that_user_cannot_buy_more_tickets_than_max_per_user(): void
-    {
-        $user = new class {
-            public $id = 1;
-        };
+    private EventsRepository $eventsRepositoryMock;
+    private TicketsRepository $ticketsRepositoryMock;
+    private TicketService $ticketService;
 
-        $event = new class {
-            public $id = 10;
-            public $tickets_per_user = 3;
-        };
+    protected function setUp(): void {
+        parent::setUp();
 
-        $ticketService = new TicketService();
+        $this->eventsRepositoryMock = $this->createMock(EventsRepository::class);
+        $this->ticketsRepositoryMock = $this->createMock(TicketsRepository::class);
+        $this->ticketService = new TicketService($this->eventsRepositoryMock, $this->ticketsRepositoryMock);
+    }
 
-        $this->assertSame(null, $ticketService->add($user, $event->id, 5));
+    public function test_allows_buying_ticket(): void {
+
+        // ARRANGE
+        $userMock = $this->createMock(User::class);
+        $userMock->method('getAttribute')->with('id')->willReturn(1);
+        $eventId = 1;
+        $numberOfTickets = 3;
+        $maxTicketsPerUser = 5;
+
+        $eventMock = $this->createMock(Events::class);
+        $eventMock->method('getAttribute')->with('tickets_per_user')->willReturn($maxTicketsPerUser);
+
+        $this->eventsRepositoryMock
+            ->expects($this->once())
+            ->method('findById')
+            ->with($eventId)
+            ->willReturn($eventMock);
+
+        $this->ticketsRepositoryMock
+            ->expects($this->exactly($numberOfTickets))
+            ->method('createTicket')
+            ->with($eventId, $userMock->id);
+
+        // ACT
+        $result = $this->ticketService->add($userMock, $eventId);
+
+        // ASSERT
+        $this->assertTrue($result);
 
     }
+ 
 }
