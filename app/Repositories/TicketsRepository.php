@@ -3,7 +3,8 @@ namespace App\Repositories;
 
 use App\Models\Tickets;
 
-class TicketsRepository {
+class TicketsRepository 
+{
 
     public function createTicket($eventId, $userId) {
         return Tickets::create([

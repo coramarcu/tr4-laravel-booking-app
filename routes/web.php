@@ -5,7 +5,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\EventsController;
 
 
-Route::get('/', function () {
+Route::get('/', function () 
+{
     return redirect()->route('events.index');
 });
 

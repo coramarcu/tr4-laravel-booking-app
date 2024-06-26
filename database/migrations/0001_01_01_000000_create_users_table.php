@@ -9,8 +9,10 @@ return new class extends Migration
 
     public function up(): void
     {
-        if (!Schema::hasTable('users')) {
-            Schema::create('users', function (Blueprint $table) {
+        if (!Schema::hasTable('users')) 
+        {
+            Schema::create('users', function (Blueprint $table) 
+            {
                 $table->id(); // PK
                 $table->string('first_name');
                 $table->string('last_name');
@@ -23,7 +25,8 @@ return new class extends Migration
             });
         }
 
-        Schema::create('sessions', function (Blueprint $table) {
+        Schema::create('sessions', function (Blueprint $table) 
+        {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();
             $table->string('ip_address', 45)->nullable();

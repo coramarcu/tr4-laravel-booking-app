@@ -3,7 +3,8 @@ namespace App\Repositories;
 
 use App\Models\Events;
 
-class EventsRepository {
+class EventsRepository 
+{
 
     public function findById($eventId) {
         return Events::find($eventId);

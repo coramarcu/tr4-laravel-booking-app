@@ -15,7 +15,8 @@ class TicketServiceTest extends TestCase
     private TicketsRepository $ticketsRepositoryMock;
     private TicketService $ticketService;
 
-    protected function setUp(): void {
+    protected function setUp(): void 
+    {
         parent::setUp();
 
         $this->eventsRepositoryMock = $this->createMock(EventsRepository::class);
@@ -23,7 +24,8 @@ class TicketServiceTest extends TestCase
         $this->ticketService = new TicketService($this->eventsRepositoryMock, $this->ticketsRepositoryMock);
     }
 
-    public function test_allows_buying_ticket(): void {
+    public function test_allows_buying_ticket(): void 
+    {
 
         // ARRANGE
         $userMock = $this->createMock(User::class);

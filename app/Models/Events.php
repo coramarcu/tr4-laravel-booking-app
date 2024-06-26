@@ -19,7 +19,8 @@ class Events extends Model
         'tickets_per_user',
     ];
 
-    public function tickets() {
+    public function tickets() 
+    {
         return $this->hasMany(Tickets::class);
     }
 

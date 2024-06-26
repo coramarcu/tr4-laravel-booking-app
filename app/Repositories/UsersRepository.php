@@ -5,9 +5,11 @@ use App\Models\Tickets;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 
-class UsersRepository {
+class UsersRepository 
+{
 
-    public function createUser(StoreUserRequest $storeUserRequest) {
+    public function createUser(StoreUserRequest $storeUserRequest) 
+    {
         $data = $storeUserRequest->validate([
             'first_name' => ['required','string'],
             'last_name'=> ['required','string'],
