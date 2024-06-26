@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Services\TicketService;
 use App\Repositories\EventsRepository;
 use App\Repositories\TicketsRepository;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class TicketServiceTest extends TestCase
 {
@@ -15,7 +15,7 @@ class TicketServiceTest extends TestCase
     private TicketsRepository $ticketsRepositoryMock;
     private TicketService $ticketService;
 
-    protected function setUp(): void 
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -24,18 +24,17 @@ class TicketServiceTest extends TestCase
         $this->ticketService = new TicketService($this->eventsRepositoryMock, $this->ticketsRepositoryMock);
     }
 
-    public function test_allows_buying_ticket(): void 
+    public function test_allows_buying_ticket(): void
     {
 
         // ARRANGE
         $userMock = $this->createMock(User::class);
-        $userMock->method('getAttribute')->with('id')->willReturn(1);
         $eventId = 1;
         $numberOfTickets = 3;
         $maxTicketsPerUser = 5;
 
         $eventMock = $this->createMock(Events::class);
-        $eventMock->method('getAttribute')->with('tickets_per_user')->willReturn($maxTicketsPerUser);
+        $eventMock->method('__get')->with('tickets_per_user')->willReturn($maxTicketsPerUser);
 
         $this->eventsRepositoryMock
             ->expects($this->once())
@@ -49,11 +48,11 @@ class TicketServiceTest extends TestCase
             ->with($eventId, $userMock->id);
 
         // ACT
-        $result = $this->ticketService->add($userMock, $eventId);
+        $result = $this->ticketService->add($userMock->id, $numberOfTickets, $eventId);
 
         // ASSERT
         $this->assertTrue($result);
 
     }
- 
+
 }
